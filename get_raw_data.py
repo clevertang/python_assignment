@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import Optional, Dict, Union, Any
 
 import pymysql
 import requests
@@ -9,7 +10,11 @@ from utils import configure_logging, retry_on_failure
 logger = configure_logging('task.log')
 
 
-def get_api_key():
+def get_api_key() -> Optional[str]:
+    """
+    get api key from db
+    :return: api key
+    """
     connection = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, password=DATABASE_PASSWORD,
                                  database=DATABASE_NAME)
     cursor = connection.cursor()
@@ -30,10 +35,10 @@ API_KEY = get_api_key()
 
 
 @retry_on_failure()
-def get_data_from_source(symbol):
+def get_data_from_source(symbol: str) -> Dict[str, Union[str, Dict[str, Any]]]:
     """
     get data from source
-    :param symbol:
+    :param symbol:like IBM
     :return:
     """
     params = {
@@ -50,7 +55,11 @@ def get_data_from_source(symbol):
     return data
 
 
-def get_raw_data():
+def get_raw_data() -> None:
+    """
+    save data form data source
+    :return:
+    """
     conn = pymysql.connect(host=DATABASE_HOST, user=DATABASE_USER, password=DATABASE_PASSWORD, database=DATABASE_NAME)
     cursor = conn.cursor()
     for symbol in SYMBOLS:

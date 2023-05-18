@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS financial_data;
+
+USE financial_data;
+
 CREATE TABLE IF NOT EXISTS financial_data (
     id INT NOT NULL AUTO_INCREMENT,
     symbol VARCHAR(255) NOT NULL,
@@ -9,7 +13,7 @@ CREATE TABLE IF NOT EXISTS financial_data (
     UNIQUE KEY idx_unique_date_symbol (date, symbol)
 );
 
-CREATE TABLE config (
+CREATE TABLE IF NOT EXISTS config (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(64),
   value VARCHAR(255)

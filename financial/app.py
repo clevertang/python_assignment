@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 """
 @Project ：python_assignment 
-@File    ：a.py
+@File    ：app.py
 @Author  ：xin.tang
 @Date    ：2023/5/16 12:18 
 """
@@ -57,7 +57,7 @@ GET_FINANCIAL_SCHEMA = {
 
 @app.route('/api/financial_data', methods=['GET'])
 @params_validator(GET_FINANCIAL_SCHEMA)
-def get_financial_data(data):
+def get_financial_data(data: dict) -> jsonify:
     # get params
     start_date = data.get('start_date')
     end_date = data.get('end_date')
@@ -117,7 +117,7 @@ GET_STATICS_SCHEMA = {
 
 @app.route('/api/statistics', methods=['GET'])
 @params_validator(GET_STATICS_SCHEMA)
-def get_statistics(data):
+def get_statistics(data: dict) -> jsonify:
     # get params
     start_date = data.get('start_date')
     end_date = data.get('end_date')
@@ -157,15 +157,15 @@ def get_statistics(data):
     return jsonify(result)
 
 
-@app.route('/start_job')
-def start_job():
+@app.route('/start_job', methods=['POST'])
+def start_job() -> str:
     scheduler.print_jobs()  # print all task
     get_raw_data()  # action right now
     return 'task finished'
 
 
 @app.errorhandler(Exception)
-def handle_error(error):
+def handle_error(error: Exception) -> jsonify:
     response = {
         'data': [],
         'pagination': {},
