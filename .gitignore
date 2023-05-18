@@ -1,0 +1,33 @@
+# Packages #
+############
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+env/
+
+# Python #
+##########
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+
+# IDE #
+#######
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and databases #
+######################
+log/
+*.log
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  database:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=tx123321z
+      - MYSQL_DATABASE=financial_data
+    volumes:
+      - db_data:/var/lib/mysql
+
+  api:
+    build:
+      context: .
+    ports:
+      - "5005:5005"
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URI=mysql://root:tx123321z@database/financial_data
+      - DATABASE_HOST=database
+      - MYSQL_AUTH_PLUGIN=
+      - ENVIRONMENT=PRODUCTION
+
+volumes:
+  db_data:
