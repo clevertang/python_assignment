@@ -159,7 +159,6 @@ def get_statistics(data: dict) -> jsonify:
 
 @app.route('/start_job', methods=['POST'])
 def start_job() -> str:
-    scheduler.print_jobs()  # print all task
     get_raw_data()  # action right now
     return 'task finished'
 

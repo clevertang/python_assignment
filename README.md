@@ -56,7 +56,7 @@ To run the application using Docker, follow these steps:
 1. Build the Docker image:
 
    ```shell
-   docker compose buildt .
+   docker compose build
    ```
 
 2. Run the Docker container:
@@ -122,3 +122,15 @@ I can do 2 and 3,but I choose the most easy one. In this case,4 has nothing to d
 ## API Test
 
 For detailed API Test, please refer to the [API TEST Documentation](API_TEST.md) file.
+
+
+
+## Others
+
+- **params_validator**: Use the `params_validator` module to validate the parameters passed to the API endpoints. This ensures that the parameters meet the required format and constraints before processing the requests.
+
+- **Logging and Database Data**: The application utilizes Docker volumes to store log files and database data. This ensures that the data is persistent and will not be lost even if the containers are restarted or updated.
+
+- **Maintenance**: The API key can be changed directly in the database using SQL queries. Additionally, the `get_raw_data` function is scheduled to run daily or can be triggered through a POST API endpoint. This ensures that the financial data is regularly updated and reflects the latest information.
+
+- **Coding Details**: For more coding details and specific implementation logic, please refer to the code comments within the project. The comments provide additional insights into the code structure, functionality, and any specific considerations made during development.
